@@ -25,30 +25,23 @@ footer {
 
 .card {
     margin:0 ;
-    position: relative;
+
     
     /* box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); */
-    transition: 0.3s;
-    overflow: hidden;
-    padding: 1px;
-
+  
 
 }
 
-.card:hover .cardDesc {
+/* .card:hover .cardDesc {
     visibility: visible;
     opacity: 1;
-}
+} */
 
 .cardDesc {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
+ 
     background: rgba(214, 216, 219, 0.123);
-    visibility: hidden;
-    opacity: 0;
+
+
 }
 
 .advPhoto{

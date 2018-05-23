@@ -1,6 +1,6 @@
 import decode  from "jwt-decode";
 import setAuthorizationToken from '../auth/setAuthToken';
-import { LOGON, QUERY } from '../actions/types';
+import { LOGON, QUERY, PAGE } from '../actions/types';
 import { hashHistory} from 'react-router';
 
 import API from "../Api"
@@ -102,6 +102,13 @@ export function getQuery(query){
     return {
         type: QUERY,
         query
+    }
+}
+
+export function getPage(page){
+    return {
+        type: PAGE,
+        page
     }
 }
 
