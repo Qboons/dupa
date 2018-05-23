@@ -14,8 +14,7 @@ footer {
 }
 
 .buttons{
-    padding: 6px 5px 0px 0px;
-    
+    padding: 6px 5px 0px 0px;  
 }
 
 .sign{
@@ -25,11 +24,11 @@ footer {
 
 .card {
     margin:1px 0px;
-    
+    min-height: 250px;
 }
 
 
 
 .advPhoto{
-    width: 100%;
+    width:100%;
 }
