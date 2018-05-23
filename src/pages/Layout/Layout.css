@@ -24,25 +24,11 @@ footer {
 }
 
 .card {
-    margin:0 ;
-
+    margin:1px 0px;
     
-    /* box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); */
-  
-
 }
 
-/* .card:hover .cardDesc {
-    visibility: visible;
-    opacity: 1;
-} */
 
-.cardDesc {
- 
-    background: rgba(214, 216, 219, 0.123);
-
-
-}
 
 .advPhoto{
     width: 100%;
