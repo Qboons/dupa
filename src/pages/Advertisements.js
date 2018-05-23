@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {  Col, Button } from 'react-bootstrap';
+import {  Col, Row, Button, Image  } from 'react-bootstrap';
 
 import API from "../Api"
 
@@ -72,13 +72,13 @@ class Advertisements extends React.Component {
 
         console.log("query:" + this.props.auth.query);
         return (
-            <main className="row">
+            <Row >
             <h1>{this.props.auth.query}</h1>
                     {
                         this.state.advertisements.map((advert) => {  
                             return(
                                 <Col className="card" xs={6} md={3} key={advert.id}>
-                                    <img src={advert.photos[0].thumb_url} alt="" className="advPhoto"/>
+                                    <Image responsive  src={advert.photos[0].thumb_url} alt="" className="advPhoto"/>
                                     <div className="cardDesc">
                                         <p>Data dodania: {advert.date_of_announcement}</p>
                                         <p>Cena: {advert.price} zł</p>
@@ -90,7 +90,7 @@ class Advertisements extends React.Component {
                             )
                         })
                     }
-            </main>
+            </Row>
         )
     }
 }
