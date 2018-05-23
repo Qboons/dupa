@@ -1,7 +1,8 @@
 import React from 'react';
-import axios from 'axios';
 import { connect } from 'react-redux';
 import { Table, Button } from 'react-bootstrap';
+
+import API from "../Api"
 
 class MyAdvertisements extends React.Component{
 
@@ -9,7 +10,7 @@ class MyAdvertisements extends React.Component{
         super(props);
 
         this.state = {
-            avertisements: []
+            advertisements: []
         }
     }
 
@@ -17,17 +18,35 @@ class MyAdvertisements extends React.Component{
         window.addEventListener('load', this.getMyAdvertisements());
     }
 
+ 
+
+    deleteAd(id){
+        console.log(id);
+        API.delete(`advertisement/${id}`)
+        .then(response =>{
+            console.log(response);
+            this.getMyAdvertisements();
+        })
+        .catch(error => {
+            console.log(error);
+        })
+        
+    }
     getMyAdvertisements(){
         let userId = this.props.auth.user.id;
-        axios.get(`http://81.2.246.98:8000/api/user/${userId}/advertisements`).then(response =>{
-            const avertisements = response.data.data;
-            this.setState({ avertisements });
+        API.get(`user/${userId}/advertisements`)
+        .then(response =>{
+            const advertisements = response.data.data;
+            this.setState({ advertisements });
             console.log(response);
         })
     }
 
+    
+
     render(){
         return(
+            
             <div className="row">
                 <h1>My advertisements</h1>
                 <Table hover responsive>
@@ -45,7 +64,7 @@ class MyAdvertisements extends React.Component{
                     <tbody>
                     
                 {
-                    this.state.avertisements.map(advert =>{
+                    this.state.advertisements.map(advert =>{
                         return(
                             <tr key={advert.id}>
                                 <td>{advert.id}</td>
@@ -54,8 +73,8 @@ class MyAdvertisements extends React.Component{
                                 <td>{advert.date_of_announcement}</td>
                                 <td>{advert.price}</td>
                                 <td><Button className="btn btn-success">Edit</Button></td>
-                                <td><Button className="btn btn-danger">Delete</Button></td>
-                            </tr>
+                                <td><Button onClick={() =>this.deleteAd(advert.id)} className="btn btn-danger">Delete</Button></td>
+                            </tr> 
                             
                         )
                     })
