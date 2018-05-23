@@ -16,7 +16,7 @@ class Advertisements extends React.Component {
         this.state = {
             query: this.props.auth.query,
             advertisements: [],
-            currentPage: "",
+            currentPage: 1,
             lastPage: ""      
         };
         // this.handleQueryChange = this.handleQueryChange.bind(this);
