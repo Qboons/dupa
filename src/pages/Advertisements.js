@@ -104,12 +104,12 @@ class Advertisements extends React.Component {
                    {
                        this.state.advertisements.map((advert) => {  
                            return(
-                               <Col className="card" xs={12} md={6} key={advert.id}>
+                               <Col className="card" xs={12} md={12} key={advert.id}>
                                 <Row>
-                                    <Col  xs={12} md={6} >
-                                        <Image responsive  src={advert.photos[0].thumb_url} alt="" className="advPhoto"/>
+                                    <Col  xs={12} md={4} >
+                                        <Image src={advert.photos[0].thumb_url} alt="" className="advPhoto"/>
                                     </Col>
-                                    <Col  xs={12} md={6} >
+                                    <Col  xs={12} md={8} >
                                         <div className="cardDesc">
                                         <p>Data dodania: {advert.date_of_announcement}</p>
                                         <p>Cena: {advert.price} zł</p>
@@ -125,9 +125,10 @@ class Advertisements extends React.Component {
                    }
            </Row>
            <Row>
-               <Pager>
-               <Pager.Item onClick={() => {this.prevPage()}}>Previous</Pager.Item>{' '}
-               <Pager.Item onClick={() => {this.nextPage()}}>Next</Pager.Item>
+               <Pager >
+               <Pager.Item onClick={() => {this.prevPage()}}>Previous</Pager.Item>
+                   <span  style={{margin: '0 15px 0 15px'}}>{this.state.currentPage}/{this.state.lastPage}</span>
+               <Pager.Item  onClick={() => {this.nextPage()}}>Next</Pager.Item>
                </Pager>
            </Row>
            </div>
