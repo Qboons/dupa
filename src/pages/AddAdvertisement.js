@@ -50,7 +50,7 @@ class AddAdvertisement extends React.Component {
             <h1>Dodawanie ogłoszenia 1/2</h1>
               <form >
                 <Row>
-                    <Col md={4} xs={6}>
+                    <Col md={6} xs={10}>
                         <FormGroup controlId="type" bsSize="xsmall">
                         <ControlLabel>Typ</ControlLabel>
                             <FormControl componentClass="select" placeholder="sprzedaż wynajem"
@@ -64,17 +64,7 @@ class AddAdvertisement extends React.Component {
                     </Col>
                 </Row>
                 <Row>
-                    <Col md={4} xs={6}>
-                        <FormGroup controlId="description">
-                        <ControlLabel>Opis</ControlLabel>
-                        <FormControl componentClass="textarea" placeholder="Opis" 
-                        onChange={this.handleChange}
-                        />
-                </FormGroup>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col md={4} xs={6}>
+                    <Col md={6} xs={10}>
                         <FormGroup controlId="price" >
                         <ControlLabel>Cena</ControlLabel>
                         <InputGroup>
@@ -87,8 +77,17 @@ class AddAdvertisement extends React.Component {
                     </Col>
                 </Row>
                 <Row>
-                    <Col md={4} xs={6}>
-
+                    <Col md={6} xs={10}>
+                        <FormGroup controlId="description">
+                        <ControlLabel>Opis</ControlLabel>
+                        <FormControl componentClass="textarea" placeholder="Opis" 
+                        onChange={this.handleChange}
+                        />
+                </FormGroup>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col md={6} xs={10}>
                     <Button className="col-md-12"
                     onClick={this.handleClick.bind(this)}
                     >Submit</Button>

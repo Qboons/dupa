@@ -12,6 +12,7 @@ import AddAdvertisement from './pages/AddAdvertisement';
 import AddProperty from './pages/AddProperty';
 import MyAdvertisements from './pages/MyAdvertisements';
 import AdvertisementVeryfication from './pages/Admin/AdvertisementVeryfication';
+import PersonalDetails from './pages/User/PersonalDetails';
 
 
 
@@ -33,6 +34,7 @@ export default class App extends Component {
             <Route path="addProperty"  component={AddProperty}></Route>
             <Route path="myAdvertisements"  component={MyAdvertisements}></Route>
             <Route path="advertisementVeryfication"  component={AdvertisementVeryfication}></Route>
+            <Route path="personalDetails"  component={PersonalDetails}></Route>
             <Route path="signIn" component={SignIn}></Route>
             <Route path="signUp" component={SignUp}></Route>
         </Route>
