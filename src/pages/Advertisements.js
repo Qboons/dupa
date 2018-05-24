@@ -126,9 +126,13 @@ class Advertisements extends React.Component {
            </Row>
            <Row>
                <Pager >
-               <Pager.Item onClick={() => {this.prevPage()}}>Previous</Pager.Item>
+                { this.state.currentPage > 1 ?
+               <Pager.Item onClick={() => {this.prevPage()}}>Previous</Pager.Item>: ""
+                }
                    <span  style={{margin: '0 15px 0 15px'}}>{this.state.currentPage}/{this.state.lastPage}</span>
-               <Pager.Item  onClick={() => {this.nextPage()}}>Next</Pager.Item>
+                {   this.state.currentPage <  this.state.lastPage ?
+               <Pager.Item  onClick={() => {this.nextPage()}}>Next</Pager.Item>: ""
+                }
                </Pager>
            </Row>
            </div>
