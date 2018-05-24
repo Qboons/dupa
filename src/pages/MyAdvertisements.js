@@ -41,6 +41,19 @@ class MyAdvertisements extends React.Component{
             console.log(response);
         })
     }
+     getStatus(status){
+       switch(status){
+           case 1:
+           return "veryfication"
+           break;
+           case 2:
+           return "denied"
+           break;
+           case 3:
+           return "accepted"
+           break;
+       }
+    }
 
     
 
@@ -57,6 +70,8 @@ class MyAdvertisements extends React.Component{
                             <th>Description</th>
                             <th>Date of announcement</th>
                             <th>Price</th>
+                            <th>Status</th>
+                            <th>Admin notes</th>
                             <th>Edit</th>
                             <th>Delete</th>
                         </tr>
@@ -72,6 +87,8 @@ class MyAdvertisements extends React.Component{
                                 <td>{advert.description}</td>
                                 <td>{advert.date_of_announcement}</td>
                                 <td>{advert.price}</td>
+                                <td>{this.getStatus(advert.status)}</td>
+                                <td>{advert.admin_notes}</td>
                                 <td><Button className="btn btn-success">Edit</Button></td>
                                 <td><Button onClick={() =>this.deleteAd(advert.id)} className="btn btn-danger">Delete</Button></td>
                             </tr> 
