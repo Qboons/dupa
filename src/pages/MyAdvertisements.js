@@ -74,6 +74,7 @@ class MyAdvertisements extends React.Component{
                             <th>Admin notes</th>
                             <th>Edit</th>
                             <th>Delete</th>
+                            <th>Edit Property</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -91,6 +92,7 @@ class MyAdvertisements extends React.Component{
                                 <td>{advert.admin_notes}</td>
                                 <td><Button className="btn btn-success">Edit</Button></td>
                                 <td><Button onClick={() =>this.deleteAd(advert.id)} className="btn btn-danger">Delete</Button></td>
+                                <td><Button className="btn">Edit Property</Button></td>
                             </tr> 
                             
                         )

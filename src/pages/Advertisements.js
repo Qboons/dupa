@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Pager, Col, Row, Button, Image  } from 'react-bootstrap';
+import { Link } from 'react-router';
 
 import {  getPage } from '../actions/index';
 
@@ -115,7 +116,7 @@ class Advertisements extends React.Component {
                                         <p>Cena: {advert.price} zł</p>
                                         <p>Opis: {advert.description}</p>
                                         <p>Nieruchomość na {advert.type}</p>
-                                        <Button>Wiecej</Button>
+                                        <Link to={{pathname: "property", query: { id: advert.id } }}><Button>More...</Button></Link>
                                         </div>
                                     </Col>
                                 </Row>
