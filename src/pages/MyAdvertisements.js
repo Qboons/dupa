@@ -94,7 +94,7 @@ class MyAdvertisements extends React.Component{
                                 <td>{advert.admin_notes}</td>
                                 <td><Link to={{pathname: "editAdvertisement", query: { advert_id: advert.id} }}><Button className="btn btn-success">Edit</Button></Link></td>
                                 <td><Button onClick={() =>this.deleteAd(advert.id)} className="btn btn-danger">Delete</Button></td>
-                                <td><Button className="btn">Edit Property</Button></td>
+                                <td><Link to={{pathname: "editProperty", query: { advert_id: advert.id} }}><Button className="btn">Edit Property</Button></Link></td>
                             </tr> 
                             
                         )

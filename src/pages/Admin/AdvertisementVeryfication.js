@@ -36,7 +36,8 @@ class AdvertisementVeryfication extends React.Component{
     getAdvertisements(){
         API.get(`admin/verification`)
         .then(response =>{
-            const advertisements = response.data.data;
+            console.log(response);
+            const advertisements = response.data.data.data;
             this.setState({ advertisements });
             console.log(response);
         })
