@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {Image, Carousel,Row, Col, PageHeader } from 'react-bootstrap';
+import {Table, Image, Carousel,Row, Col, PageHeader } from 'react-bootstrap';
 import API from "../Api"
 
 
@@ -9,8 +9,9 @@ class Property extends React.Component {
         super(props);
 
         this.state ={
-            advertisement:"",
-            property:"",
+            advertisement:{},
+            property:{},
+            user:{},
             photos:[]
         }
         
@@ -29,14 +30,16 @@ class Property extends React.Component {
             const advertisement = response.data.data;
             const property = response.data.data.property;
             const photos = response.data.data.photos;
+            const user = response.data.data.user;
             this.setState({advertisement})
             this.setState({property})
             this.setState({photos})
+            this.setState({user})
             console.log(this.state.advertisement);
         })
         .catch(error => {
             console.log(error);
-            alert(error.response);       
+   
         })
     }
 
@@ -46,6 +49,11 @@ class Property extends React.Component {
         return(
             <Row>
                 <PageHeader>Property id:{this.props.location.query.id}</PageHeader>
+                <Row>
+                <Col>
+                   <h3> {this.state.advertisement.description}</h3>
+                </Col>
+                </Row>
                 <Row>
                     <Col>
                       <Carousel>
@@ -67,16 +75,6 @@ class Property extends React.Component {
                 </Row>
                 <Row>
                     <Col>
-                       <p> {this.state.advertisement.description}</p>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col>
-                       
-                    </Col>
-                </Row>
-                <Row>
-                    <Col>
                         <p>{this.state.property.description}</p>
                     </Col>
                 </Row>
@@ -90,24 +88,70 @@ class Property extends React.Component {
                 </Row>
                 <Row>
                     <Col md={6} xs={10}>
-                        <p>City: {this.state.property.country}</p>
-                        <p>country: {this.state.property.city}</p>
-                        <p>created_at: {this.state.property.created_at}</p>
-                        <p>date_of_construction: {this.state.property.date_of_construction}</p>
-                        <p>date_of_registration: {this.state.property.date_of_registration}</p>
-                        <p>floor: {this.state.property.floor}</p>
-                        <p>garage: {this.state.property.garage}</p>
-                        <p>land_area: {this.state.property.land_area}</p>
-                        <p>number_of_floors: {this.state.property.number_of_floors}</p>
-                        <p>number_of_rooms: {this.state.property.number_of_rooms}</p>
-                        <p>postal_code: {this.state.property.postal_code}</p>
-                        <p>property_area: {this.state.property.property_area}</p>
-                        <p>property_type: {this.state.property.property_type}</p>
-                        <p>street: {this.state.property.street}</p>
-                        <p>street_number: {this.state.property.street_number}</p>
-                    
+                    <Table hover responsive>
+                        <thead></thead>
+                        <tbody>
+                            <tr>
+                                <td>Country</td>
+                                <td>{this.state.property.country}</td>
+                            </tr>
+                            <tr>
+                                <td>City</td>
+                                <td>{this.state.property.city}</td>
+                            </tr>
+                            <tr>
+                                <td>Postal code</td>
+                                <td>{this.state.property.postal_code}</td>
+                            </tr>
+                            <tr>
+                                <td>Steet</td>
+                                <td>{this.state.property.street}</td>
+                            </tr>
+                            <tr>
+                                <td>Street number</td>
+                                <td>{this.state.property.street_number}</td>
+                            </tr>
+                            <tr>
+                                <td>Date of construction</td>
+                                <td>{this.state.property.date_of_construction}</td>
+                            </tr>
+                            <tr>
+                                <td>Date of registration</td>
+                                <td>{this.state.property.date_of_registration}</td>
+                            </tr>
+                            <tr>
+                                <td>Floor</td>
+                                <td>{this.state.property.floor}</td>
+                            </tr>
+                            <tr>
+                                <td>Farage</td>
+                                <td>{this.state.property.garage}</td>
+                            </tr>
+                            <tr>
+                                <td>Land area</td>
+                                <td>{this.state.property.land_area}</td>
+                            </tr>
+                            <tr>
+                                <td>Number of rooms</td>
+                                <td>{this.state.property.number_of_rooms}</td>
+                            </tr>
+                            <tr>
+                                <td>Property area</td>
+                                <td>{this.state.property.property_area}</td>
+                            </tr>
+                            <tr>
+                                <td>Property type</td>
+                                <td>{this.state.property.property_type}</td>
+                            </tr>
+                        </tbody>
+                    </Table>
                     </Col>
-                    <Col md={6} xs={10}></Col>
+                    <Col md={6} xs={10}>
+                        <h3>Owner</h3>
+                        <p>{this.state.user.name}</p>
+                        <p>{this.state.user.email}</p>
+                        
+                    </Col>
                 
                 </Row>
                 <Row>
