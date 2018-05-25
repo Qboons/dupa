@@ -1,8 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router';
 import { Table, Button } from 'react-bootstrap';
 
 import API from "../Api"
+
 
 class MyAdvertisements extends React.Component{
 
@@ -82,7 +84,7 @@ class MyAdvertisements extends React.Component{
                 {
                     this.state.advertisements.map(advert =>{
                         return(
-                            <tr key={advert.id}>
+                            <tr key={advert.id} >
                                 <td>{advert.id}</td>
                                 <td>{advert.type}</td>
                                 <td>{advert.description}</td>
@@ -90,7 +92,7 @@ class MyAdvertisements extends React.Component{
                                 <td>{advert.price}</td>
                                 <td>{this.getStatus(advert.status)}</td>
                                 <td>{advert.admin_notes}</td>
-                                <td><Button className="btn btn-success">Edit</Button></td>
+                                <td><Link to={{pathname: "editAdvertisement", query: { advert_id: advert.id} }}><Button className="btn btn-success">Edit</Button></Link></td>
                                 <td><Button onClick={() =>this.deleteAd(advert.id)} className="btn btn-danger">Delete</Button></td>
                                 <td><Button className="btn">Edit Property</Button></td>
                             </tr> 

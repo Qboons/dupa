@@ -79,7 +79,7 @@ class Property extends React.Component {
                     </Col>
                 </Row>
                 <Row>
-                    <Col md={6} xs={6}>
+                    <Col md={6}  xs={6}>
                         <p>Price: {this.state.advertisement.price} $</p>
                     </Col>
                     <Col md={6} xs={6}>
