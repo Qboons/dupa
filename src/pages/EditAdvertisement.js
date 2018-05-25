@@ -102,10 +102,10 @@ class EditAdvertisement extends React.Component {
                     <Col md={6} xs={10}>
                         <FormGroup controlId="description">
                         <ControlLabel>Opis</ControlLabel>
-                        <FormControl componentClass="textarea" placeholder="Opis" 
-                        value={this.state.description}
+                        <FormControl componentClass="textarea" placeholder="Opis"           
                         onChange={this.handleChange}
                         disabled={this.state.disabled}
+                        value={this.state.description}
                         />
                 </FormGroup>
                     </Col>

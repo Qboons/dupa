@@ -26,37 +26,48 @@ class AddProperty extends React.Component {
            street: "",
            street_number:"",
            postal_code: "",
-           image: null
+           image: []
         };
         this.handleClick = this.handleClick.bind(this);
     }
     
 
     handleImageChange = event =>{
-        this.setState({image: event.target.files[0]})
+        console.log(event.target.files);
+        const img = event.target.files;
+        const image = [];
+        
+        Array.from(event.target.files).forEach(file =>{
+            image.push(file);
+        })
+
+        this.setState({image});
+        console.log(image);
     }
 
-    uploadImgHandler(){
-        
-    }
 
    
 
     handleClick(){
          console.log(this.state);
    
-         const formData = new FormData()
+         
          if(this.state.image != null){
-            formData.append('image', this.state.image, this.state.image.name)
+            
+            this.state.image.map(img =>{
+                const formData = new FormData()
+                console.log(img);
+                formData.append('image', img, img.name) ;
+                API.post(`advertisement/${this.props.location.state.id}/image`, formData)
+                .then(response =>{
+                    console.log(response.status);
+                  })
+                  .catch(error => {   
+                    console.log(error);
+                })
+            })  
          }
         
-        API.post(`advertisement/${this.props.location.state.id}/image`, formData)
-        .then(response =>{
-            console.log(response.status);
-          })
-          .catch(error => {   
-            console.log(error);
-        })
 
 
          API.post(`advertisement/${this.props.location.state.id}/property`, this.state)
@@ -247,7 +258,7 @@ class AddProperty extends React.Component {
                         <ControlLabel>Zdjęcie</ControlLabel>
                         <FormControl type="file" placeholder="image" 
                         onChange={this.handleImageChange}
-                        />
+                        multiple/>
                         </FormGroup>
                     </Col>
                 </Row>
