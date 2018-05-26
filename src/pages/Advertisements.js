@@ -40,23 +40,23 @@ class Advertisements extends React.Component {
         if(this.props.auth.query === ""){
             API.get(`advertisement?page=${this.props.auth.page}`)
             .then(res => {
-                console.log(res);
+                // console.log(res);
 
                 this.setState({currentPage: res.data.current_page});
 
                 this.setState({lastPage: res.data.last_page});
                 const advertisements = res.data.data;
-                console.log(advertisements);
+                // console.log(advertisements);
                 this.setState({ advertisements });
             });
 
         } else{
             API.get(`search?query=${this.props.auth.query}&page=${this.props.auth.page}`) 
             .then(res => {
-                console.log(res);
+                // console.log(res);
 
                 this.setState({currentPage: res.data.current_page});
-                console.log(res.data.current_page);
+                // console.log(res.data.current_page);
                 this.setState({lastPage: res.data.last_page});
 
                 const advert = res.data.data;
@@ -64,12 +64,24 @@ class Advertisements extends React.Component {
                 for( let key in advert) {
                     advertisements.push(advert[key]);
                 }
-                console.log(advertisements);
-                console.log(this.state.advertisements);
+                // console.log(advertisements);
+                // console.log(this.state.advertisements);
                 this.setState({ advertisements });
-                console.log(this.state.advertisements);
+                // console.log(this.state.advertisements);
             });
         }
+    }
+    deleteAd(id){
+        console.log(id);
+        API.delete(`advertisement/${id}`)
+        .then(response =>{
+            console.log(response);
+            this.getAd();
+        })
+        .catch(error => {
+            console.log(error);
+        })
+        
     }
 
     // getAllAdv(){
@@ -96,7 +108,7 @@ class Advertisements extends React.Component {
 
     render() {
 
-        // console.log(this.props);
+        // console.log(this.props.auth.user.admin);
         // console.log("query:" + this.props.auth.query);
         return (
            <div>
@@ -116,7 +128,12 @@ class Advertisements extends React.Component {
                                         <p>Cena: {advert.price} zł</p>
                                         <p>Opis: {advert.description}</p>
                                         <p>Nieruchomość na {advert.type}</p>
-                                        <Link to={{pathname: "property", query: { id: advert.id } }}><Button>More...</Button></Link>
+                                        <p><Link to={{pathname: "property", query: { id: advert.id } }}><Button>More...</Button></Link></p>
+                                        {this.props.auth.user.admin ?
+                                             (<p><Button className="btn btn-danger" onClick={() => this.deleteAd(advert.id)}>Delete</Button></p>)
+                                             : 
+                                             ""}
+                                        
                                         </div>
                                     </Col>
                                 </Row>
