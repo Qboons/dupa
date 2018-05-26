@@ -82,17 +82,13 @@ class Property extends React.Component {
                 </Col>
                 </Row>
                 <Row>
-                    <Col>
+                    <Col md={12}  xs={12}>
                       <Carousel>
                         {
                             this.state.photos.map((photo)=>{
                                 return(
                                     <Carousel.Item>
-                                    <Image responsive src={photo.url} />
-                                    <Carousel.Caption>
-                                        <h3>hehe</h3>
-                                        <p>haha</p>
-                                    </Carousel.Caption>
+                                    <Image  src={photo.url} />
                                     </Carousel.Item>
                                 )
                             })
