@@ -15,9 +15,6 @@ class Property extends React.Component {
             photos:[],
             note: ""
         }
-        
-
-
     }
 
     componentDidMount() {

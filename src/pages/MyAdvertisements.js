@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import { Table, Button } from 'react-bootstrap';
 
+
 import API from "../Api"
 
 
@@ -65,7 +66,7 @@ class MyAdvertisements extends React.Component{
     
 
     render(){
-        console.log(this.state.advertisements);
+        // console.log(this.state.advertisements);
         return(
            
             <div className="row">
@@ -83,6 +84,7 @@ class MyAdvertisements extends React.Component{
                             <th>Edit</th>
                             <th>Delete</th>
                             <th>Edit Property</th>
+                            <th>Edit Images</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -101,6 +103,7 @@ class MyAdvertisements extends React.Component{
                                 <td><Link to={{pathname: "editAdvertisement", query: { advert_id: advert.id} }}><Button className="btn btn-success">Edit</Button></Link></td>
                                 <td><Button onClick={() =>this.deleteAd(advert.id)} className="btn btn-danger">Delete</Button></td>
                                 <td><Link to={{pathname: "editProperty", query: { advert_id: advert.id} }}><Button className="btn">Edit Property</Button></Link></td>
+                                <td><Link to={{pathname: "editImages", query: { advert_id: advert.id} }}><Button className="btn">Edit Images</Button></Link></td>
                             </tr> 
                             
                         )

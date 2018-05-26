@@ -2,6 +2,7 @@ import React from 'react';
 import { Col, Row, Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 import { connect } from 'react-redux';
 import { hashHistory} from 'react-router';
+import { formatDate } from '../actions/index';
 
 import API from "../Api"
 
@@ -40,6 +41,10 @@ class EditProperty extends React.Component {
     }
 
     updateProperty(){
+            this.setState({
+                date_of_registration: formatDate(this.state.date_of_registration),
+                date_of_construction: formatDate(this.state.date_of_construction)
+            })
             console.log(this.state);
             const formData = new FormData()
             if(this.state.image != null){

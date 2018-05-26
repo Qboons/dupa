@@ -2,6 +2,7 @@ import React from 'react';
 import { Col, Row,Button, FormGroup, FormControl, ControlLabel, InputGroup } from "react-bootstrap";
 import { connect } from 'react-redux';
 import { hashHistory} from 'react-router';
+import { formatDate } from '../actions/index';
 
 
 import API from "../Api"
@@ -32,7 +33,7 @@ class AddAdvertisement extends React.Component {
           })
           .catch(error => {
             console.log(error);
-            alert(error.response);       
+            alert(error);       
         })
     }
     
@@ -93,10 +94,6 @@ class AddAdvertisement extends React.Component {
                     >Submit</Button>
                     </Col>
                 </Row>
-                
-      
-
-                
               </form>    
               
             </main>

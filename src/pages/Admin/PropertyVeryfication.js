@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { hashHistory } from 'react-router';
 import {Table, Image, Carousel,Row, Col, PageHeader,Button,FormGroup, FormControl, InputGroup } from 'react-bootstrap';
 import API from "../../Api"
 
@@ -12,7 +13,6 @@ class PropertyVeryfication extends React.Component {
             user:{},
             advertisement:{},
             property:{},
-            
             photos:[],
             note: ""
         }
@@ -38,9 +38,11 @@ class PropertyVeryfication extends React.Component {
     confirm(id){
         console.log(id);
         let status = {"status": 3 };
+
         API.post(`admin/${id}/verificate`, status)
         .then(response =>{
             console.log(response);
+            hashHistory.push({pathname: "advertisementVeryfication" })
         })
         .catch(error => {
             console.log(error);
@@ -48,10 +50,13 @@ class PropertyVeryfication extends React.Component {
     }
     reject(id){
         console.log(id);
-        let status = {status : 2, admin_notes : this.state.note };
+        let status = { status : 2, admin_notes : this.state.note };
+        console.log(status);
         API.post(`admin/${id}/verificate`, status)
+        
         .then(response =>{
             console.log(response);
+            hashHistory.push({pathname: "advertisementVeryfication" })
         })
         .catch(error => {
             console.log(error);
@@ -64,7 +69,7 @@ class PropertyVeryfication extends React.Component {
             });
     }
     render(){
-        console.log(this.state.advertisement.property)
+
         return(
             <Row>
                 <PageHeader>Property id:{this.state.advertisement.id}</PageHeader>
@@ -104,7 +109,7 @@ class PropertyVeryfication extends React.Component {
                                 <FormGroup controlId="note">
                                 <InputGroup>
                                 <InputGroup.Addon>Note for owner</InputGroup.Addon>
-                                <FormControl type="textarea"onChange={this.handleChange}/>
+                                <FormControl type="textarea" onChange={this.handleChange}/>
                                 </InputGroup>
                                 </FormGroup>
                             </Col>
