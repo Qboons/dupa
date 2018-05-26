@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Table, Button } from 'react-bootstrap';
+import { Link } from 'react-router';
+import { Table, Button,Dropdown, FormGroup, ControlLabel, FormControl, InputGroup, MenuItem, Modal} from 'react-bootstrap';
 
 import API from "../../Api"
 
@@ -10,7 +11,7 @@ class AdvertisementVeryfication extends React.Component{
         super(props);
 
         this.state = {
-            advertisements: []
+            advertisements: [],
         }
     }
 
@@ -20,7 +21,7 @@ class AdvertisementVeryfication extends React.Component{
 
  
 
-    changeStatus(id){
+    confirm(id){
         console.log(id);
         let status = {"status": 3 };
         API.post(`admin/${id}/verificate`, status)
@@ -30,9 +31,35 @@ class AdvertisementVeryfication extends React.Component{
         })
         .catch(error => {
             console.log(error);
-        })
-        
+        })   
     }
+
+
+    confirm(id){
+        console.log(id);
+        let status = {"status": 3 };
+        API.post(`admin/${id}/verificate`, status)
+        .then(response =>{
+            console.log(response);
+            this.getAdvertisements();
+        })
+        .catch(error => {
+            console.log(error);
+        })   
+    }
+    reject(id){
+        console.log(id);
+        let status = {"status": 2 };
+        API.post(`admin/${id}/verificate`, status)
+        .then(response =>{
+            console.log(response);
+            this.getAdvertisements();
+        })
+        .catch(error => {
+            console.log(error);
+        })   
+    }
+
     getAdvertisements(){
         API.get(`admin/verification`)
         .then(response =>{
@@ -43,6 +70,11 @@ class AdvertisementVeryfication extends React.Component{
         })
     }
 
+    isDisabled(){
+        this.state.disabled == true ? this.setState({disabled: false }): this.setState({disabled: true });
+        console.log(this.state.disabled);
+   }
+
     
 
     render(){
@@ -50,7 +82,7 @@ class AdvertisementVeryfication extends React.Component{
             
             <div className="row">
                 <h1>advertisements verification</h1>
-                <Table hover responsive>
+                <Table hover responsive className="table-responsive">
                     <thead>
                         <tr>
                             <th>ID</th>
@@ -60,23 +92,32 @@ class AdvertisementVeryfication extends React.Component{
                             <th>Price</th>
                             <th>Status</th>
                             <th>Edit Status</th>
+                            <td>Property</td>
                         </tr>
+                        
                     </thead>
                     <tbody>
                     
                 {
                     this.state.advertisements.map(advert =>{
                         return(
-                            <tr key={advert.id}>
-                                <td>{advert.id}</td>
-                                <td>{advert.type}</td>
-                                <td>{advert.description}</td>
-                                <td>{advert.date_of_announcement}</td>
-                                <td>{advert.price}</td>
-                                <td>{advert.status}</td>
-                                <td><Button className="btn btn-success" onClick={() => this.changeStatus(advert.id)}>Edit</Button></td>
-                            </tr> 
-                            
+                        <tr key={advert.id}>
+                          <td>{advert.id}</td>
+                          <td>{advert.type}</td>
+                          <td>{advert.description}</td>
+                          <td>{advert.date_of_announcement}</td>
+                          <td>{advert.price}</td>
+                          <td>{advert.status}</td>
+                          
+                          <td>
+                            <Button className="btn btn-success" onClick={() => this.confirm(advert.id)}>Confirm</Button>
+                            <Button className="btn btn-danger" onClick={() => this.reject(advert.id)}>Reject</Button>
+                          </td>
+                          <td>
+                            <Link to={{pathname: "propertyVeryfication", query: { advert: JSON.stringify(advert) } }}><Button>Property details</Button></Link>
+                          </td>
+                          
+                      </tr> 
                         )
                     })
                 }

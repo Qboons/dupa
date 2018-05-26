@@ -28,7 +28,11 @@ footer {
     margin:5px 0px;
     min-height: 250px;
 }
+.table-responsive {
+    overflow: visible !important;
+    position: static !important;
 
+  }
 
 
 .advPhoto{

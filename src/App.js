@@ -15,6 +15,8 @@ import AddProperty from './pages/AddProperty';
 import EditProperty from './pages/EditProperty';
 import MyAdvertisements from './pages/MyAdvertisements';
 import AdvertisementVeryfication from './pages/Admin/AdvertisementVeryfication';
+import Users from './pages/Admin/Users';
+import PropertyVeryfication from './pages/Admin/PropertyVeryfication';
 import PersonalDetails from './pages/User/PersonalDetails';
 
 
@@ -40,6 +42,8 @@ export default class App extends Component {
             <Route path="editProperty"  component={EditProperty}></Route>
             <Route path="myAdvertisements"  component={MyAdvertisements}></Route>
             <Route path="advertisementVeryfication"  component={AdvertisementVeryfication}></Route>
+            <Route path="propertyVeryfication"  component={PropertyVeryfication}></Route>
+            <Route path="users"  component={Users}></Route>
             <Route path="personalDetails"  component={PersonalDetails}></Route>
             <Route path="signIn" component={SignIn}></Route>
             <Route path="signUp" component={SignUp}></Route>

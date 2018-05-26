@@ -45,23 +45,29 @@ class MyAdvertisements extends React.Component{
     }
      getStatus(status){
        switch(status){
-           case 1:
-           return "veryfication"
-           break;
-           case 2:
-           return "denied"
-           break;
-           case 3:
-           return "accepted"
-           break;
+            case 0: 
+            return"incorrect"
+            break;
+            case 1:
+            return "veryfication"
+            break;
+            case 2:
+            return "denied"
+            break;
+            case 3:
+            return "accepted"
+            break;
+            default:
+            return "hehe"
        }
     }
 
     
 
     render(){
+        console.log(this.state.advertisements);
         return(
-            
+           
             <div className="row">
                 <h1>My advertisements</h1>
                 <Table hover responsive>

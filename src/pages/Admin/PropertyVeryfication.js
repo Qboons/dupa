@@ -1,17 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import {Table, Image, Carousel,Row, Col, PageHeader,Button,FormGroup, FormControl, InputGroup } from 'react-bootstrap';
-import API from "../Api"
+import API from "../../Api"
 
 
-class Property extends React.Component {
+class PropertyVeryfication extends React.Component {
     constructor(props){
         super(props);
 
         this.state ={
+            user:{},
             advertisement:{},
             property:{},
-            user:{},
+            
             photos:[],
             note: ""
         }
@@ -26,22 +27,12 @@ class Property extends React.Component {
 
 
     getProperty(){
-        API.get(`advertisement/${this.props.location.query.id}`)
-        .then(response =>{
-            const advertisement = response.data.data;
-            const property = response.data.data.property;
-            const photos = response.data.data.photos;
-            const user = response.data.data.user;
-            this.setState({advertisement})
-            this.setState({property})
-            this.setState({photos})
-            this.setState({user})
-            console.log(this.state.advertisement);
-        })
-        .catch(error => {
-            console.log(error);
-   
-        })
+        const advertisement = JSON.parse(this.props.location.query.advert);
+        this.setState({advertisement});
+        this.setState({property: advertisement.property});
+        this.setState({user: advertisement.user});
+        this.setState({photos: advertisement.photos});
+ 
     }
 
     confirm(id){
@@ -50,7 +41,6 @@ class Property extends React.Component {
         API.post(`admin/${id}/verificate`, status)
         .then(response =>{
             console.log(response);
-            this.getAdvertisements();
         })
         .catch(error => {
             console.log(error);
@@ -58,11 +48,10 @@ class Property extends React.Component {
     }
     reject(id){
         console.log(id);
-        let status = {"status": 2," admin_notes": this.state.note };
+        let status = {status : 2, admin_notes : this.state.note };
         API.post(`admin/${id}/verificate`, status)
         .then(response =>{
             console.log(response);
-            this.getAdvertisements();
         })
         .catch(error => {
             console.log(error);
@@ -71,14 +60,14 @@ class Property extends React.Component {
 
     handleChange = event => {
         this.setState({
-            user:{[event.target.id]: event.target.value}
+            [event.target.id]: event.target.value
             });
     }
     render(){
-        console.log(this.props.auth.user.admin)
+        console.log(this.state.advertisement.property)
         return(
             <Row>
-                <PageHeader>Property id:{this.props.location.query.id}</PageHeader>
+                <PageHeader>Property id:{this.state.advertisement.id}</PageHeader>
                 <Row>
                 <Col>
                    <h3> {this.state.advertisement.description}</h3>
@@ -102,6 +91,28 @@ class Property extends React.Component {
                         }
                       </Carousel>
                     </Col>
+                </Row>
+                {
+                    this.props.auth.user.admin == true ? (
+                        <Row>
+                            <Col md={1} xs={4}>Admin</Col>
+                            <Col md={2} xs={4}>  
+                                <Button className="btn btn-success" onClick={() => this.confirm(this.state.advertisement.id)}>Accept</Button>
+                                <Button className="btn btn-danger" onClick={() => this.reject(this.state.advertisement.id)}>Reject</Button>
+                            </Col>
+                            <Col md={8} xs={12}>
+                                <FormGroup controlId="note">
+                                <InputGroup>
+                                <InputGroup.Addon>Note for owner</InputGroup.Addon>
+                                <FormControl type="textarea"onChange={this.handleChange}/>
+                                </InputGroup>
+                                </FormGroup>
+                            </Col>
+                        </Row>
+                    ): ""
+
+                }
+                <Row>
                     <Col>
                         <p>{this.state.property.description}</p>
                     </Col>
@@ -198,4 +209,4 @@ function mapStateToProps(state) {
       auth: state
     };
   }
-  export default connect(mapStateToProps )(Property);
+  export default connect(mapStateToProps )(PropertyVeryfication);
