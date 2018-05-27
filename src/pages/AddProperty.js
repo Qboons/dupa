@@ -94,8 +94,8 @@ class AddProperty extends React.Component {
         // console.log(this.props.location);
         return (
             <main className="row">
-            <h1>Dodawanie ogłoszenia 2/2</h1>
-            <h2>ID ogłoszenia: {this.props.location.state.id}</h2>
+            <h1>Advertisement 2/2</h1>
+            <h2>Advertisement ID : {this.props.location.state.id}</h2>
 
               <form >
                 <Row>

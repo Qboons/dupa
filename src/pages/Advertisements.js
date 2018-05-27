@@ -124,10 +124,10 @@ class Advertisements extends React.Component {
                                     </Col>
                                     <Col  xs={12} md={8} >
                                         <div className="cardDesc">
-                                        <p>Data dodania: {advert.date_of_announcement}</p>
-                                        <p>Cena: {advert.price} zł</p>
-                                        <p>Opis: {advert.description}</p>
-                                        <p>Nieruchomość na {advert.type}</p>
+                                        <p>Date of announcement: {advert.date_of_announcement}</p>
+                                        <p>Price: {advert.price} zł</p>
+                                        <p>description : {advert.description}</p>
+                                        <p>For {advert.type}</p>
                                         <p><Link to={{pathname: "property", query: { id: advert.id } }}><Button>More...</Button></Link></p>
                                         {this.props.auth.user.admin ?
                                              (<p><Button className="btn btn-danger" onClick={() => this.deleteAd(advert.id)}>Delete</Button></p>)
