@@ -88,7 +88,7 @@ class Property extends React.Component {
                             this.state.photos.map((photo)=>{
                                 return(
                                     <Carousel.Item>
-                                    <Image  src={photo.url} />
+                                    <Image className="propertyPhoto" src={photo.url} />
                                     </Carousel.Item>
                                 )
                             })
