@@ -77,7 +77,7 @@ class Property extends React.Component {
             <Row>
                 <PageHeader>Property id:{this.props.location.query.id}</PageHeader>
                 <Row>
-                <Col>
+                <Col mdOffset={1}>
                    <h3> {this.state.advertisement.description}</h3>
                 </Col>
                 </Row>
@@ -95,7 +95,7 @@ class Property extends React.Component {
                         }
                       </Carousel>
                     </Col>
-                    <Col>
+                    <Col mdOffset={1}>
                         <p>{this.state.property.description}</p>
                     </Col>
                 </Row>
