@@ -107,7 +107,7 @@ class EditProperty extends React.Component {
         });
       }
       back(){
-
+        hashHistory.push({pathname: "myAdvertisements"});
       }
   
 
