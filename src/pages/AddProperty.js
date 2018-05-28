@@ -1,5 +1,5 @@
 import React from 'react';
-import { Col, Row, Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
+import { Col, Row, Button, FormGroup, FormControl, ControlLabel,InputGroup } from "react-bootstrap";
 import { connect } from 'react-redux';
 import { hashHistory} from 'react-router';
 
@@ -126,9 +126,12 @@ class AddProperty extends React.Component {
                     <Col md={4} xs={6}>
                         <FormGroup controlId="property_area">
                         <ControlLabel>Property area</ControlLabel>
+                        <InputGroup>
                         <FormControl type="number" placeholder="Property area" 
                         onChange={this.handleChange}
                         />
+                        <InputGroup.Addon>m<sup>2</sup></InputGroup.Addon>
+                        </InputGroup>
                         </FormGroup>
                     </Col>
                 </Row>
@@ -190,9 +193,12 @@ class AddProperty extends React.Component {
                     <Col md={4} xs={6}>
                         <FormGroup controlId="land_area">
                         <ControlLabel>Land area</ControlLabel>
+                        <InputGroup>
                         <FormControl type="number" placeholder="Land area" 
                         onChange={this.handleChange}
                         />
+                        <InputGroup.Addon>m<sup>2</sup></InputGroup.Addon>
+                        </InputGroup>
                         </FormGroup>
                     </Col>
                     <Col md={4} xs={6}>
