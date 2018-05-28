@@ -11,7 +11,6 @@ class EditProperty extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-          property: {
             property_type: "",
             description: "",
             date_of_registration: new Date().toLocaleDateString().toString(),
@@ -27,9 +26,9 @@ class EditProperty extends React.Component {
             city: "",
             street: "",
             street_number:"",
-            postal_code: ""
-          },
-          disabled:true
+            postal_code: "",
+          disabled:true,
+          empty: false
         };
     }
     
@@ -41,20 +40,18 @@ class EditProperty extends React.Component {
     }
 
     updateProperty(){
-            this.setState({
-                date_of_registration: formatDate(this.state.date_of_registration),
-                date_of_construction: formatDate(this.state.date_of_construction)
-            })
-            console.log(this.state);
-            const formData = new FormData()
-            if(this.state.image != null){
-               formData.append('image', this.state.image, this.state.image.name)
-            }
-           
-        
-
-
-            API.patch(`advertisement/${this.props.location.query.advert_id}/property`, this.state.property)
+        if(this.state.empty){
+            API.post(`advertisement/${this.props.location.query.advert_id}/property`, this.state)
+            .then(response =>{
+            console.log(response);
+            this.setState({disabled: true});
+          })
+          .catch(error => {
+            console.log(error);
+            alert(error);       
+        })
+        }
+            API.patch(`advertisement/${this.props.location.query.advert_id}/property`, this.state)
             .then(response =>{
             console.log(response);
             this.setState({disabled: true});
@@ -64,15 +61,35 @@ class EditProperty extends React.Component {
             alert(error);       
         })
     }
+
     getProperty(){
         API.get(`advertisement/${this.props.location.query.advert_id}/property`)
         .then(response =>{
             const property = response.data.data;
-            this.setState({property});
+            this.setState({
+                property_type: property.property_type,
+                description: property.description,
+                date_of_registration: property.date_of_registration,
+                property_area: property.property_area,
+                date_of_construction: property.date_of_construction,
+                number_of_floors: property.number_of_floors,
+                number_of_rooms: property.number_of_rooms,
+                floor: property.floor,
+                balcony: property.balcony,
+                garage: property.garage,
+                land_area: property.land_area,
+                country: property.country,
+                city: property.city,
+                street: property.street,
+                street_number:property.street_number,
+                postal_code: property.postal_code,
+
+            });
             console.log(this.state.property);
 
         })
         .catch(error => {
+            this.setState({empty: true})
             console.log(error);
             alert(error.response);       
         })
@@ -83,10 +100,12 @@ class EditProperty extends React.Component {
     }
     
       handleChange = event => {
-        this.setState({property:{
+        this.setState({
             [event.target.id]: event.target.value
-        }  
         });
+      }
+      back(){
+
       }
   
 
@@ -104,7 +123,7 @@ class EditProperty extends React.Component {
                             <FormControl componentClass="select" 
                             onChange={this.handleChange}
                             disabled={this.state.disabled}
-                            value={this.state.property.property_type}
+                            value={this.state.property_type}
                             >
                                 <option ></option>
                                 <option value="Flat" >Flat</option>
@@ -123,17 +142,17 @@ class EditProperty extends React.Component {
                         <FormControl type="date"
                         onChange={this.handleChange}
                         disabled={this.state.disabled}
-                        value={this.state.property.date_of_registration}
+                        value={this.state.date_of_registration}
                         />
                         </FormGroup>
                     </Col>
                     <Col md={4} xs={6}>
                         <FormGroup controlId="property_area">
-                        <ControlLabel>Property_area</ControlLabel>
+                        <ControlLabel>Property area</ControlLabel>
                         <FormControl type="number" 
                         onChange={this.handleChange}
                         disabled={this.state.disabled}
-                        value={this.state.property.property_area}
+                        value={this.state.property_area}
                         />
                         </FormGroup>
                     </Col>
@@ -145,7 +164,7 @@ class EditProperty extends React.Component {
                         <FormControl type="date"
                         onChange={this.handleChange}
                         disabled={this.state.disabled}
-                        value={this.state.property.date_of_construction}
+                        value={this.state.date_of_construction}
                         />
                         </FormGroup>
                     </Col>
@@ -155,7 +174,7 @@ class EditProperty extends React.Component {
                         <FormControl type="number" 
                         onChange={this.handleChange}
                         disabled={this.state.disabled}
-                        value={this.state.property.number_of_floors}
+                        value={this.state.number_of_floors}
                         />
                         </FormGroup>
                     </Col>
@@ -167,7 +186,7 @@ class EditProperty extends React.Component {
                         <FormControl type="number" 
                         onChange={this.handleChange}
                         disabled={this.state.disabled}
-                        value={this.state.property.number_of_rooms}
+                        value={this.state.number_of_rooms}
                         />
                         </FormGroup>
                     </Col>
@@ -177,7 +196,7 @@ class EditProperty extends React.Component {
                         <FormControl type="number"
                         onChange={this.handleChange}
                         disabled={this.state.disabled}
-                        value={this.state.property.floor}
+                        value={this.state.floor}
                         />
                         </FormGroup>
                     </Col>
@@ -189,7 +208,7 @@ class EditProperty extends React.Component {
                         <FormControl type="number"
                         onChange={this.handleChange}
                         disabled={this.state.disabled}
-                        value={this.state.property.balcony}
+                        value={this.state.balcony}
                         />
                         </FormGroup>
                     </Col>
@@ -199,7 +218,7 @@ class EditProperty extends React.Component {
                         <FormControl type="number"
                         onChange={this.handleChange}
                         disabled={this.state.disabled}
-                        value={this.state.property.garage}
+                        value={this.state.garage}
                         />
                         </FormGroup>
                     </Col>
@@ -210,7 +229,7 @@ class EditProperty extends React.Component {
                         <ControlLabel>Land area</ControlLabel>
                         <FormControl type="number" 
                         disabled={this.state.disabled}
-                        value={this.state.property.land_area}
+                        value={this.state.land_area}
                         />
                         </FormGroup>
                     </Col>
@@ -220,7 +239,7 @@ class EditProperty extends React.Component {
                         <FormControl type="text"  
                         onChange={this.handleChange}
                         disabled={this.state.disabled}
-                        value={this.state.property.country}
+                        value={this.state.country}
                         />
                         </FormGroup>
                     </Col>
@@ -232,7 +251,7 @@ class EditProperty extends React.Component {
                         <FormControl type="text"
                         onChange={this.handleChange}
                         disabled={this.state.disabled}
-                        value={this.state.property.city}
+                        value={this.state.city}
                         />
                         </FormGroup>
                     </Col>
@@ -242,7 +261,7 @@ class EditProperty extends React.Component {
                         <FormControl type="text"
                         onChange={this.handleChange}
                         disabled={this.state.disabled}
-                        value={this.state.property.street}
+                        value={this.state.street}
                         />
                         </FormGroup>
                     </Col>
@@ -254,7 +273,7 @@ class EditProperty extends React.Component {
                         <FormControl type="text" 
                         onChange={this.handleChange}
                         disabled={this.state.disabled}
-                        value={this.state.property.street_number}
+                        value={this.state.street_number}
                         />
                         </FormGroup>
                     </Col>
@@ -264,7 +283,7 @@ class EditProperty extends React.Component {
                         <FormControl type="text" 
                         onChange={this.handleChange}
                         disabled={this.state.disabled}
-                        value={this.state.property.postal_code}
+                        value={this.state.postal_code}
                         />
                         </FormGroup>
                     </Col>
@@ -276,7 +295,7 @@ class EditProperty extends React.Component {
                         <FormControl type="text" 
                         onChange={this.handleChange}
                         disabled={this.state.disabled}
-                        value={this.state.property.description}
+                        value={this.state.description}
                         />
                         </FormGroup>
                     </Col>
@@ -295,6 +314,11 @@ class EditProperty extends React.Component {
                     >edit</Button>
                     </Col>
                 }
+                <Col md={3} xs={10}>
+                    <Button className="col-md-12"
+                    onClick={() => this.back()}
+                    >Back</Button>
+                    </Col>
                 </Row>
               </form>    
              
