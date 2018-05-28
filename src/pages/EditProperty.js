@@ -13,7 +13,7 @@ class EditProperty extends React.Component {
         this.state = {
             property_type: "",
             description: "",
-            date_of_registration: new Date().toLocaleDateString().toString(),
+            date_of_registration: "",
             property_area: "",
             date_of_construction: "",
             number_of_floors: "",
@@ -50,7 +50,7 @@ class EditProperty extends React.Component {
             console.log(error);
             alert(error);       
         })
-        }
+        }else{
             API.patch(`advertisement/${this.props.location.query.advert_id}/property`, this.state)
             .then(response =>{
             console.log(response);
@@ -60,6 +60,8 @@ class EditProperty extends React.Component {
             console.log(error);
             alert(error);       
         })
+        }
+          
     }
 
     getProperty(){

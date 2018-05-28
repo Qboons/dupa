@@ -12,7 +12,7 @@ class AddProperty extends React.Component {
         this.state = {
            property_type: "",
            description: "",
-           date_of_registration: new Date().toLocaleDateString().toString(),
+           date_of_registration:"",
            property_area: "",
            date_of_construction: "",
            number_of_floors: "",
