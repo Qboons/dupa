@@ -116,10 +116,10 @@ class Advertisements extends React.Component {
         return (
            <div>
            <Row >
-           <h1>{this.props.auth.query}
+           <h1>
            {
             this.props.auth.query !== "" ?(
-                <Button onClick={()=>this.resetQuery()}>x</Button>
+                <Button onClick={()=>this.resetQuery()}>{this.props.auth.query} x</Button>
            ): ""
            }
            
