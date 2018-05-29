@@ -114,7 +114,7 @@ class EditImages extends React.Component {
                 {
                     this.state.getImg.map(img =>{
                         return(
-                            <Col xs={6} md={4} style={{marginTop: '10px'}}>
+                            <Col xs={10} md={4} style={{marginTop: '10px'}}>
                             <Thumbnail  style={{width: "300px", height: "320px"}}>
                             <p><img src={img.url} style={{width: "270px", height: "250px"}}></img></p>
                                 <p>
