@@ -103,7 +103,6 @@ class EditImages extends React.Component {
             <Button className="col-md-12"
             onClick={this.addImg.bind(this)}
             >Submit</Button>
-           
             </Col>
             <Col md={2} xs={6}>
             <Button className="col-md-12"
@@ -111,10 +110,11 @@ class EditImages extends React.Component {
             >Back</Button>
             </Col>
          </Row>
+         <Row>
                 {
                     this.state.getImg.map(img =>{
                         return(
-                            <Col xs={12} md={4} >
+                            <Col xs={12} sm={6} md={4} >
                             <Thumbnail className="thumbnail" style={{}}>
                             <p><img className="imgThumbnail" src={img.url}></img></p>
                                 <p>
@@ -125,7 +125,7 @@ class EditImages extends React.Component {
                         )
                     })
                 }
-             
+                </Row>
             </main>
         )
     }
