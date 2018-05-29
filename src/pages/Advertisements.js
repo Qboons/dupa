@@ -106,6 +106,10 @@ class Advertisements extends React.Component {
         }
     }
 
+    resetQuery(){
+        this.props.getQuery("");
+    }
+
     render() {
 
         // console.log(this.props.auth.user.admin);
