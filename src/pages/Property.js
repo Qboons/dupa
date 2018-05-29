@@ -75,10 +75,10 @@ class Property extends React.Component {
         console.log(this.props.auth.user.admin)
         return(
             <Row>
-                <PageHeader>Property id:{this.props.location.query.id}</PageHeader>
+                <PageHeader>{this.state.advertisement.description}</PageHeader>
                 <Row>
                 <Col mdOffset={1} xsOffset={1} >
-                   <h3> {this.state.advertisement.description}</h3>
+                   <h4>Property id:{this.props.location.query.id}</h4>
                 </Col>
                 </Row>
                 <Row>
@@ -95,16 +95,14 @@ class Property extends React.Component {
                         }
                       </Carousel>
                     </Col>
-                    <Col mdOffset={1} xsOffset={1}  md={11}>
-                        <p>{this.state.property.description}</p>
-                    </Col>
                 </Row>
+                <hr/>
                 <Row>
                     <Col md={6}  xs={6}>
-                        <p>Price: {this.state.advertisement.price} $</p>
+                        <h3>Price: {this.state.advertisement.price}$</h3>
                     </Col>
                     <Col md={6} xs={6}>
-                        <p>Type: {this.state.advertisement.type}</p>
+                        <h3>Type: <span  className="upperCase">{this.state.advertisement.type}</span></h3>
                     </Col>
                 </Row>
                 <Row>
@@ -168,6 +166,9 @@ class Property extends React.Component {
                     </Table>
                     </Col>
                     <Col md={6} xs={10}>
+                        <h3>Description</h3>
+                        <p>{this.state.property.description}</p>
+                        <hr/>
                         <h3>Owner</h3>
                         <p>{this.state.user.name}</p>
                         <p>{this.state.user.email}</p>
