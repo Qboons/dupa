@@ -114,9 +114,9 @@ class EditImages extends React.Component {
                 {
                     this.state.getImg.map(img =>{
                         return(
-                            <Col xs={10} md={4} style={{marginTop: '10px'}}>
-                            <Thumbnail  style={{width: "300px", height: "320px"}}>
-                            <p><img src={img.url} style={{width: "270px", height: "250px"}}></img></p>
+                            <Col xs={12} md={4} >
+                            <Thumbnail className="thumbnail" style={{}}>
+                            <p><img className="imgThumbnail" src={img.url}></img></p>
                                 <p>
                                 <Button onClick={() => this.deleteImg(img.id)}>Delete</Button>
                                 </p>

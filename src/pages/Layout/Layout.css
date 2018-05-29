@@ -22,6 +22,15 @@ body{
     width: 250px;
     padding: 10px;
 }
+.thumbnail{
+    margin-top: 10px; 
+    width: 300px;
+    height: 320px;
+}
+.imgThumbnail{
+    width: 270px;
+    height: 250px;
+}
 
 .card {
     padding: 0;
