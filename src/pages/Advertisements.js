@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Pager, Col, Row, Button, Image  } from 'react-bootstrap';
 import { Link } from 'react-router';
 
-import {  getPage } from '../actions/index';
+import {  getPage, getQuery } from '../actions/index';
 
 
 import API from "../Api"
@@ -174,4 +174,4 @@ function mapStateToProps(state) {
     };
   }
 
-  export default connect(mapStateToProps, {  getPage } )(Advertisements);
+  export default connect(mapStateToProps, {  getPage,getQuery } )(Advertisements);
