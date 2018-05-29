@@ -74,7 +74,7 @@ class Property extends React.Component {
     render(){
         console.log(this.props.auth.user.admin)
         return(
-            <main className="property">
+            <main className="notFull">
             <Row>
                 <PageHeader>{this.state.advertisement.description}</PageHeader>
                 <Row>

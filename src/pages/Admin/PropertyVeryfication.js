@@ -72,6 +72,7 @@ class PropertyVeryfication extends React.Component {
     render(){
 
         return(
+            <main className="notFull">
             <Row>
                 <PageHeader>Property id:{this.state.advertisement.id}</PageHeader>
                 <Row>
@@ -201,6 +202,7 @@ class PropertyVeryfication extends React.Component {
                     <Col md={4} xs={10}><p>Updated at: {this.state.advertisement.updated_at}</p></Col>
                 </Row>
             </Row>
+            </main>
         )
     }
 

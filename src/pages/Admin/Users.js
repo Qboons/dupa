@@ -108,8 +108,7 @@ class Users extends React.Component{
 
     render(){
         return(
-            
-            <div className="row">
+            <div className="row notFull">
                 <h1>Users</h1>
                 <Table hover responsive className="table-responsive">
                     <thead>

@@ -68,7 +68,7 @@ class EditAdvertisement extends React.Component {
     render() {
         return (
             
-            <main className="row">
+            <main className="row notFull">
             <h1> Edit Advertisement id:{this.props.location.query.advert_id}</h1>
               <form >
                 <Row>

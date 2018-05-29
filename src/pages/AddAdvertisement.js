@@ -47,8 +47,7 @@ class AddAdvertisement extends React.Component {
     render() {
         console.log();
         return (
-            
-            <main className="row">
+            <main className="row notFull">
                 <h1>Advertisement 1/2</h1>
                 <form >
                     <Row>

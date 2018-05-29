@@ -92,7 +92,7 @@ class AddProperty extends React.Component {
     render() {
         // console.log(this.props.location);
         return (
-            <main className="row">
+            <main className="row notFull">
             <h1>Advertisement 2/2</h1>
             <h2>Advertisement ID : {this.props.location.state.id}</h2>
 

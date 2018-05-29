@@ -80,7 +80,7 @@ class AdvertisementVeryfication extends React.Component{
     render(){
         return(
             
-            <div className="row">
+            <div className="row notFull">
                 <h1>Advertisements verification</h1>
                 <Table hover responsive className="table-responsive">
                     <thead>

@@ -84,7 +84,7 @@ class EditImages extends React.Component {
 
     render() {
         return (
-            <main className="row">
+            <main className="row notFull">
             <h1>Images</h1>
             <Row>
             <Col md={2} xs={6}>

@@ -111,7 +111,7 @@ class EditProperty extends React.Component {
     render() {
         // console.log(this.props.location);
         return (
-            <main className="row">
+            <main className="row notFull">
             <h1>EditProperty</h1>
 
               <form >

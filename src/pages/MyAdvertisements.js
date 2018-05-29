@@ -69,7 +69,7 @@ class MyAdvertisements extends React.Component{
         // console.log(this.state.advertisements);
         return(
            
-            <div className="row">
+            <div className="row notFull">
                 <h1>My advertisements</h1>
                 <Table hover responsive>
                     <thead>
