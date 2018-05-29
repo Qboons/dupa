@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Router, Route, IndexRoute, hashHistory} from 'react-router';
-
+import { connect } from 'react-redux';
 
 
 import Layout from './pages/Layout';
@@ -23,34 +23,55 @@ import PersonalDetails from './pages/User/PersonalDetails';
 
 
 
+ class App extends Component {
+   constructor(props){
+     super(props);
 
-export default class App extends Component {
+     this.requireAuth = this.requireAuth.bind(this);
+     this.requireAdmin = this.requireAdmin.bind(this);
+   }
 
+   requireAuth(nextState, replace) {
+    if (!this.props.auth.isAuthenticated) {
+      replace({
+        pathname: '/home'
+      })
+    }
+  }
+   requireAdmin(nextState, replace) {
+    if (!this.props.auth.user.admin) {
+      replace({
+        pathname: '/home'
+      })
+    }
+  }
 
 
   render() {
-    
+    console.log(this.props.auth.isAuthenticated);
     return (
       <div>
       <Router history={hashHistory} >
         <Route path="/"  component={Layout} getQ={this.getQuery}>
             <IndexRoute component={Home} />
+            <Route path="signIn" component={SignIn}></Route>
+            <Route path="signUp" component={SignUp}></Route>
             <Route path="about" component={About}></Route>
             <Route path="home" component={Home}></Route>
             <Route path="advertisements"  component={Advertisements}></Route>
             <Route path="property"  component={Property}></Route>
-            <Route path="addAdvertisement"  component={AddAdvertisement}></Route>
-            <Route path="editAdvertisement"  component={EditAdvertisement}></Route>
-            <Route path="addProperty"  component={AddProperty}></Route>
-            <Route path="editProperty"  component={EditProperty}></Route>
-            <Route path="editImages"  component={EditImages}></Route>
-            <Route path="myAdvertisements"  component={MyAdvertisements}></Route>
-            <Route path="advertisementVeryfication"  component={AdvertisementVeryfication}></Route>
-            <Route path="propertyVeryfication"  component={PropertyVeryfication}></Route>
-            <Route path="users"  component={Users}></Route>
-            <Route path="personalDetails"  component={PersonalDetails}></Route>
-            <Route path="signIn" component={SignIn}></Route>
-            <Route path="signUp" component={SignUp}></Route>
+            <Route path="addAdvertisement"  component={AddAdvertisement} onEnter={this.requireAuth} ></Route>
+            <Route path="editAdvertisement"  component={EditAdvertisement} onEnter={this.requireAuth}></Route>
+            <Route path="addProperty"  component={AddProperty} onEnter={this.requireAuth}></Route>
+            <Route path="editProperty"  component={EditProperty } onEnter={this.requireAuth}></Route>
+            <Route path="editImages"  component={EditImages} onEnter={this.requireAuth}></Route>
+            <Route path="myAdvertisements"  component={MyAdvertisements} onEnter={this.requireAuth}></Route>
+            <Route path="personalDetails"  component={PersonalDetails} onEnter={this.requireAuth}></Route>
+            <Route path="advertisementVeryfication"  component={AdvertisementVeryfication} onEnter={this.requireAdmin}></Route>
+            <Route path="propertyVeryfication"  component={PropertyVeryfication} onEnter={this.requireAdmin}></Route>
+            <Route path="users"  component={Users} onEnter={this.requireAdmin}></Route>
+            
+            
         </Route>
       </Router>
       
@@ -58,7 +79,13 @@ export default class App extends Component {
     );
   }
 }
+function mapStateToProps(state) {
+  return {
+    auth: state
+  };
+}
 
+export default connect(mapStateToProps )(App);
 
 
 
