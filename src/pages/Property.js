@@ -74,6 +74,7 @@ class Property extends React.Component {
     render(){
         console.log(this.props.auth.user.admin)
         return(
+            <main className="property">
             <Row>
                 <PageHeader>{this.state.advertisement.description}</PageHeader>
                 <Row>
@@ -182,6 +183,7 @@ class Property extends React.Component {
                     <Col md={4} xs={10}><p>Updated at: {this.state.advertisement.updated_at}</p></Col>
                 </Row>
             </Row>
+            </main>
         )
     }
 
