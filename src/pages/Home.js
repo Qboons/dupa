@@ -8,14 +8,14 @@ export default class Home extends React.Component {
     render() {
         return (
         <main>
-            <LazyHero imageSrc="https://cdn.pixabay.com/photo/2014/08/11/21/40/wall-416062_1280.jpg">
+            <LazyHero imageSrc="https://i.imgur.com/fhcHUdm.jpg">
                 <h1>It’s your Journey. We’re Here to Help.</h1>
             </LazyHero>
             <h2>WELCOME</h2>
                 <hr/>
             <Row className="show-grid">
                             <Col md={6} mdPush={6}>
-                                <Image src="https://cdn.pixabay.com/photo/2018/01/29/07/55/modern-minimalist-bathroom-3115450_1280.jpg" alt="" className="homePhoto"/>                            
+                                <Image src="https://i.imgur.com/AK1GM07.jpg" alt="" className="homePhoto"/>                            
                             </Col>
                             <Col md={6} mdPull={6}>
                                 <section>
